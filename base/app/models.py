@@ -14,15 +14,13 @@ class Room(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
-    # participants = 
+    participants = models.ManyToManyField(User, related_name='participants', blank=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     
     # This method is to order the newest topics first
     class Meta:
         ordering = ['-updated', '-created']
-    
-    
     def __str__(self):
         return str(self.name)
     
@@ -34,5 +32,8 @@ class Message(models.Model):
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     
+    class Meta:
+        ordering = ['-updated', '-created']
+    
     def __str__(self):
-        return self.body
+        return self.body[:50]
