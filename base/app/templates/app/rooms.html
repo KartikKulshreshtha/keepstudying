@@ -1,4 +1,5 @@
 {% extends 'main.html' %} {% block content %}
+{% load static %}
 <main class="profile-page layout layout--2">
   <div class="container">
     <!-- Room Start -->
@@ -79,7 +80,7 @@
             <p>Hosted By</p>
             <a href="{% url 'profile' room.host.id %}" class="room__author">
               <div class="avatar avatar--small">
-                <img src="https://randomuser.me/api/portraits/men/37.jpg" />
+                <img src="{% static 'images/Pic.png' %}" />
               </div>
               <span>{{room.host}}</span>
             </a>
@@ -95,7 +96,7 @@
                   <a href="{% url 'profile' message.user.id %}" class="thread__authorInfo">
                     <div class="avatar avatar--small">
                       <img
-                        src="https://randomuser.me/api/portraits/men/37.jpg"
+                        src="{% static 'images/Pic.png' %}"
                       />
                     </div>
                     <span>@{{message.user}}</span>
@@ -149,7 +150,7 @@
         {% for user in participants %}
         <a href="{% url 'profile' user.id %}" class="participant">
           <div class="avatar avatar--medium">
-            <img src="https://randomuser.me/api/portraits/men/37.jpg" />
+            <img src="{% static 'images/Pic.png' %}" />
           </div>
           <p>
             {{user.username}}
